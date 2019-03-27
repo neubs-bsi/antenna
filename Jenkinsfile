@@ -88,6 +88,17 @@ spec:
                         }
                     }
                 }
+                stage ('check state of remote repository') {
+                    steps {
+                        sshagent ( ['projects-storage.eclipse.org-bot-ssh']) {
+                            sh '''
+                              ssh genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/
+                              ssh genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/antenna/
+                              ssh genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/antenna/snapshots/
+                            '''
+                        }
+                    }
+                }
                 // stage ('push local repository') {
                 //     steps {
                 //         sshagent ( ['projects-storage.eclipse.org-bot-ssh']) {
