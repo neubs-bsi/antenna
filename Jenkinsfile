@@ -92,11 +92,9 @@ spec:
                     steps {
                         sshagent ( ['projects-storage.eclipse.org-bot-ssh']) {
                             sh '''
-                              ssh-keygen -R eclipse.org || true
-                              ssh-keygen -R projects-storage.eclipse.org || true
-                              ssh genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/
-                              ssh genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/antenna/
-                              ssh genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/antenna/snapshots/
+                              ssh -o StrictHostKeyChecking=no genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/
+                              ssh -o StrictHostKeyChecking=no genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/antenna/
+                              ssh -o StrictHostKeyChecking=no genie.antenna@projects-storage.eclipse.org ls -alF /home/data/httpd/download.eclipse.org/antenna/snapshots/
                             '''
                         }
                     }
